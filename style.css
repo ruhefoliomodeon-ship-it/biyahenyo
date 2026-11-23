@@ -1127,3 +1127,515 @@ h1 em {
     font-size: 23px;
   }
 }
+
+/* Responsive safeguards for narrow screens, short viewports, and safe areas. */
+html {
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+img,
+canvas,
+video,
+svg {
+  max-width: 100%;
+}
+
+.topbar,
+.screen,
+.game-layout,
+.play-area,
+.menu-panel,
+.question-box,
+.results-panel,
+.modal-inner {
+  min-width: 0;
+}
+
+.screen {
+  min-height: calc(100vh - 77px);
+  min-height: calc(100dvh - 77px);
+}
+
+.menu-panel,
+.question-box,
+.results-panel,
+.modal-inner {
+  overflow-wrap: anywhere;
+}
+
+.settings select,
+.answer,
+.primary,
+.secondary,
+.navbtn {
+  max-width: 100%;
+}
+
+@media (max-width: 580px) {
+  .topbar {
+    height: auto;
+    min-height: 67px;
+    gap: 8px;
+    padding: 8px max(8px, env(safe-area-inset-left)) 8px max(8px, env(safe-area-inset-right));
+  }
+
+  .right {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  .screen {
+    min-height: calc(100vh - 67px);
+    min-height: calc(100dvh - 67px);
+  }
+
+  #menu {
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+
+  #game {
+    padding-right: max(9px, env(safe-area-inset-right));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    padding-left: max(9px, env(safe-area-inset-left));
+  }
+
+  .game-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .question-box {
+    padding: clamp(12px, 4vw, 18px);
+  }
+
+  .answer {
+    overflow-wrap: anywhere;
+  }
+
+  #results {
+    padding: 16px max(12px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  }
+
+  .results-panel {
+    padding: clamp(18px, 5vw, 30px);
+  }
+
+  .results-panel h2 {
+    font-size: clamp(30px, 9vw, 43px);
+  }
+
+  .bigscore {
+    font-size: clamp(46px, 14vw, 65px);
+  }
+
+  .modal-inner {
+    max-height: calc(100dvh - 36px);
+    overflow-y: auto;
+    padding: clamp(18px, 5vw, 25px);
+  }
+}
+
+@media (max-width: 380px) {
+  .brand {
+    font-size: 12px;
+  }
+
+  .brand small {
+    font-size: 6px;
+    letter-spacing: 0.7px;
+  }
+
+  .navbtn {
+    padding: 6px;
+    font-size: 9px;
+  }
+
+  .grade-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .subject-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .question-footer {
+    gap: 8px;
+  }
+
+  .answer-submit {
+    width: 100%;
+  }
+}
+
+@media (max-height: 600px) and (min-width: 581px) {
+  #menu {
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .menu-panel {
+    margin: 8px 0;
+  }
+
+  #game {
+    padding-top: 8px;
+  }
+
+  .game-layout {
+    min-height: 0;
+  }
+
+  .car-stage {
+    min-height: 150px;
+  }
+
+  .question-box {
+    margin-bottom: 8px;
+    padding: 16px;
+  }
+
+  .progressbar {
+    margin: 8px 0;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 900px) {
+  .game-layout {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+  }
+
+  .play-area {
+    min-height: 0;
+  }
+
+  .car-stage {
+    min-height: 100px;
+  }
+
+  .question-box {
+    margin: 0;
+    padding: 12px;
+  }
+
+  .answers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .answer {
+    min-height: 44px;
+    padding: 7px;
+    font-size: 12px;
+  }
+}
+
+/* Cross-device layout safeguards — keeps every screen readable and usable. */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+}
+
+.topbar {
+  width: 100%;
+  min-width: 0;
+}
+
+.brand,
+.right {
+  min-width: 0;
+}
+
+.screen,
+.game-layout,
+.play-area,
+.menu-panel,
+.question-box,
+.results-panel,
+.modal-inner {
+  max-width: 100%;
+}
+
+button,
+select,
+.answer,
+.primary,
+.secondary,
+.navbtn {
+  white-space: normal;
+}
+
+@media (max-width: 1100px) {
+  .game-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+  }
+
+  .car-stage {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    padding-inline: 12px;
+  }
+
+  .brand {
+    text-align: left;
+  }
+
+  .menu-panel {
+    margin-inline: auto;
+  }
+
+  #menu {
+    align-items: flex-start;
+  }
+
+  .game-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .play-area {
+    width: 100%;
+  }
+
+  .car-stage {
+    min-height: clamp(180px, 34vh, 260px);
+  }
+
+  .question-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .right {
+    max-width: 68%;
+  }
+
+  .navbtn {
+    max-width: 100%;
+  }
+
+  .menu-panel {
+    width: 100%;
+  }
+
+  .grade-grid,
+  .subject-grid {
+    grid-auto-rows: 1fr;
+  }
+
+  .hud {
+    width: 100%;
+  }
+
+  .hud-cell {
+    text-align: center;
+  }
+
+  .question-footer {
+    width: 100%;
+  }
+
+  .answer-submit {
+    width: 100%;
+  }
+
+  .results-panel {
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 580px) {
+  .topbar {
+    align-items: center;
+  }
+
+  .brand {
+    flex: 1;
+  }
+
+  .right {
+    max-width: 58%;
+  }
+
+  .right .navbtn {
+    flex: 1 1 auto;
+  }
+
+  #menu {
+    min-height: calc(100dvh - 67px);
+  }
+
+  .menu-panel {
+    margin-top: 0;
+  }
+
+  .picker-heading {
+    margin-top: 12px;
+  }
+
+  .game-layout {
+    gap: 10px;
+  }
+
+  .hud {
+    gap: 6px;
+  }
+
+  .hud-cell strong {
+    overflow-wrap: anywhere;
+  }
+
+  .progressbar {
+    width: 100%;
+  }
+
+  .answers {
+    grid-template-columns: 1fr;
+  }
+
+  #questionText {
+    overflow-wrap: anywhere;
+  }
+
+  .answer {
+    width: 100%;
+  }
+
+  .travel-banner {
+    left: 50%;
+  }
+}
+
+@media (max-width: 380px) {
+  .topbar {
+    min-height: 62px;
+  }
+
+  .brand small {
+    margin-top: 3px;
+  }
+
+  .right {
+    max-width: 62%;
+  }
+
+  .menu-panel {
+    border-width: 3px;
+  }
+
+  .grade-grid,
+  .subject-grid {
+    gap: 5px;
+  }
+
+  .subject-card {
+    min-height: 68px;
+  }
+
+  .hud-cell {
+    min-height: 48px;
+  }
+
+  .car-stage {
+    min-height: 150px;
+  }
+
+  .question-box {
+    border-width: 3px;
+  }
+
+  .answer {
+    min-height: 50px;
+  }
+}
+
+@media (orientation: portrait) and (max-height: 700px) {
+  .car-stage {
+    min-height: 140px;
+  }
+
+  .play-area {
+    min-height: 0;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .topbar {
+    height: 58px;
+    min-height: 58px;
+  }
+
+  .screen {
+    min-height: calc(100dvh - 58px);
+  }
+
+  #menu {
+    min-height: calc(100dvh - 58px);
+  }
+
+  #game {
+    padding-top: 6px;
+  }
+
+  .game-layout {
+    grid-template-columns: minmax(0, 0.85fr) minmax(300px, 1.15fr);
+    min-height: calc(100dvh - 70px);
+  }
+
+  .play-area {
+    min-height: 0;
+  }
+
+  .car-stage {
+    min-height: 90px;
+  }
+
+  .hud {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .progressbar {
+    margin-block: 6px;
+  }
+
+  .question-box {
+    margin: 0;
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
+  }
+
+  .answers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (hover: none) {
+  .pick:hover,
+  .primary:hover,
+  .navbtn:hover,
+  .secondary:hover,
+  .answer:hover {
+    transform: none;
+  }
+}
