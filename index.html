@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="tl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BiyaHENYO!</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js"}}
+  </script>
+</head>
+<body>
+  <div id="world"></div>
+  <div class="vignette"></div>
+
+  <header class="topbar">
+    <button id="homeBtn" class="navbtn">⌂ Tahanan</button>
+    <div class="brand">
+      BIYAHENYO!
+      <small>3D ADVENTURE</small>
+    </div>
+    <div class="right">
+      <button id="soundBtn" class="navbtn">🔊 Tunog</button>
+      <button id="helpBtn" class="navbtn">? Tulong</button>
+    </div>
+  </header>
+
+  <section id="menu" class="screen active">
+    <div class="menu-panel">
+      <div class="eyebrow">ANG PINAKAMASAYANG LEARNING ROAD TRIP!</div>
+      <h1>BiyaHENYO!</h1>
+      <p class="intro">Piliin ang iyong baitang at paboritong asignatura. Sagot muna bago arangkada!</p>
+
+      <div class="picker-heading">ANONG BAITANG MO?</div>
+      <div class="grade-grid" id="gradeCards" role="group" aria-label="Pumili ng baitang">
+        <button class="pick grade-card" data-grade="1"><strong>1</strong><small>Baitang 1</small></button>
+        <button class="pick grade-card" data-grade="2"><strong>2</strong><small>Baitang 2</small></button>
+        <button class="pick grade-card" data-grade="3"><strong>3</strong><small>Baitang 3</small></button>
+        <button class="pick grade-card active" data-grade="4"><strong>4</strong><small>Baitang 4</small></button>
+        <button class="pick grade-card" data-grade="5"><strong>5</strong><small>Baitang 5</small></button>
+        <button class="pick grade-card" data-grade="6"><strong>6</strong><small>Baitang 6</small></button>
+        <button class="pick grade-card mix-grade" data-grade="mix"><strong>HALO-HALO</strong><small>Baitang 1–6</small></button>
+      </div>
+
+      <div class="picker-heading">ANONG SUBJECT?</div>
+      <div class="subject-grid" id="subjectCards" role="group" aria-label="Pumili ng asignatura">
+        <button class="pick subject-card active" data-subject="mix"><span aria-hidden="true">🌈</span><strong>Halo-halo</strong></button>
+        <button class="pick subject-card" data-subject="math"><span aria-hidden="true">🔢</span><strong>Matematika</strong></button>
+        <button class="pick subject-card" data-subject="filipino"><span aria-hidden="true">📖</span><strong>Filipino</strong></button>
+        <button class="pick subject-card" data-subject="english"><span aria-hidden="true">🔤</span><strong>English</strong></button>
+        <button class="pick subject-card" data-subject="science"><span aria-hidden="true">🔬</span><strong>Agham</strong></button>
+        <button class="pick subject-card" data-subject="ap"><span aria-hidden="true">🌏</span><strong>Araling Panlipunan</strong></button>
+        <button class="pick subject-card" data-subject="mapeh"><span aria-hidden="true">🎨</span><strong>MAPEH</strong></button>
+        <button class="pick subject-card" data-subject="values"><span aria-hidden="true">💛</span><strong>GMRC / EsP</strong></button>
+      </div>
+
+      <div class="menu-actions">
+        <button class="primary" id="startBtn">🏁 TARA, BIYAHE NA!</button>
+        <div class="micro">8 checkpoint bawat round • Iba-ibang tanong bawat laro</div>
+      </div>
+      <div class="stats" id="menuStats"></div>
+    </div>
+  </section>
+
+  <section id="game" class="screen">
+    <div class="game-layout">
+      <div class="play-area">
+        <div class="hud">
+          <div class="hud-cell"><small>🚩 CHECKPOINT</small><strong id="progress">1 / 8</strong></div>
+          <div class="hud-cell"><small>⭐ MGA BITUIN</small><strong id="score">⭐ 0</strong></div>
+          <div class="hud-cell"><small>📚 subjects</small><strong id="subjectLabel">—</strong></div>
+          <div class="hud-cell"><small>🎒 BAITANG</small><strong id="gradeLabel">—</strong></div>
+        </div>
+        <div class="progressbar"><div id="progressFill"></div></div>
+        <div class="car-stage">
+          <div class="stage-pill">TINGNAN ANG IYONG KOTSE!</div>
+          <div class="stage-caption">Tamang sagot = uusad sa susunod na checkpoint 🏁</div>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <div class="question-kicker" id="questionKicker">🚩 CHECKPOINT 1</div>
+        <h2 id="questionText"></h2>
+        <div id="answers" class="answers"></div>
+        <div class="question-footer">
+          <span id="message">← → upang pumili • SPACE upang sumagot</span>
+          <button id="submitBtn" class="answer-submit">SAGUTIN!</button>
+        </div>
+        <div class="key-hint">⌨️ Arrow keys = pili • SPACE = sagot</div>
+      </div>
+    </div>
+    <div class="travel-banner" id="travelBanner">Yehey! Papunta na sa susunod na checkpoint!</div>
+  </section>
+
+  <section id="results" class="screen">
+    <div class="results-panel">
+      <div class="trophy">🏆</div>
+      <div class="eyebrow">NARATING MO ANG FINISH LINE!</div>
+      <h2>Mahusay na pag-byahe!</h2>
+      <p id="resultSubtitle"></p>
+      <div class="bigscore" id="finalScore"></div>
+      <div id="resultBreakdown" class="result-breakdown"></div>
+      <div class="result-actions">
+        <button id="againBtn" class="primary">Bagong 8 Tanong</button>
+        <button id="changeBtn" class="secondary">Baguhin ang Asignatura</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-inner">
+      <h2>Paano Maglaro?</h2>
+      <p>
+        1. Piliin ang baitang at Subject.<br>
+        2. Basahin ang tanong sa bawat checkpoint.<br>
+        3. Gamitin ang <b>← →</b> o <b>↑ ↓</b> para pumili ng sagot.<br>
+        4. Pindutin ang <b>SPACE</b> o ang button upang sumagot.<br>
+        5. Kapag mali ang unang sagot, <b>0 puntos</b> sa checkpoint na iyon. Subukan muli hanggang tama. Hindi gagalaw ang kotse habang mali.<br>
+        6. Kapag tama, maglalakbay ang kotse papunta sa susunod na checkpoint.
+      </p>
+      <button id="closeModal" class="primary">Naintindihan ko!</button>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
+
